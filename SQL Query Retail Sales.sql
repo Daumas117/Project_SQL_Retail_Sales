@@ -117,6 +117,7 @@ Order by Total_sales desc
 --Which one is the biggest buyer.
 
 select 
+	top 15
 	customer_id, 
 	count(customer_id) as NumberOfTransactions
 from retail_sales
@@ -125,6 +126,7 @@ order by NumberOfTransactions desc
 
 --Which client purchased the most items.
 select 
+	top 15
 	customer_id, 
 	sum(quantiy) as QTY
 from retail_sales
@@ -135,6 +137,7 @@ order by QTY desc
 
 --Which client purchse the most in Total Sales.
 select 
+	top 15
 	customer_id, 
 	count(customer_id) as Transactions, 
 	sum(total_sale) as TotalAmmount
@@ -155,6 +158,25 @@ where customer_id = 3
 group by category
 order by Transactions desc 
 
+select 
+	category, 
+	count(category) as Transactions, 
+	sum(total_sale) as Total_Amount
+from retail_sales
+where customer_id = 5
+group by category
+order by Transactions desc 
+
+-- We want to know how much is spend for each transaction.
+
+select 
+	category, 
+	count(category) as Transactions, 
+	round(avg(total_sale),2) as Avg_Total_Amount
+from retail_sales
+group by category
+order by Transactions desc 
+
 -- The AVG age of customers who purchased items for each category.
 
 select
@@ -163,9 +185,10 @@ select
 from retail_sales
 group by category
 
--- Which date do we had the most sales.
+-- Which date did we had the most sales.
 
 select 
+	top 15
 	sale_date, 
 	sum(customer_id) as transactions
 from retail_sales
@@ -222,7 +245,7 @@ order by transactions
 select
 	YEAR(sale_date) as year,
 	month(sale_date) as month,
-	avg(total_sale) as Avg_sale
+	round(avg(total_sale),2) as Avg_sale
 from retail_sales
 group by YEAR(sale_date), month(sale_date)
 order by year, month
@@ -233,7 +256,7 @@ with monthly_avg_sale as(
 	select
 		YEAR(sale_date) as year,
 		month(sale_date) as month,
-		avg(total_sale) as Avg_sale
+		round(avg(total_sale),2) as Avg_sale
 	from retail_sales
 	group by YEAR(sale_date), month(sale_date)
 ), 
@@ -292,7 +315,7 @@ with hourly_sales as (
 )
 select
 	shift,
-	count(*) as shifts,
+	count(*) as Transactions,
 	sum(total_sale) as TotalSale
 from hourly_sales
 group by shift
