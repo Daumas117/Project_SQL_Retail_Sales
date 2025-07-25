@@ -132,7 +132,7 @@ The goal of this stage is to explore trends and patterns in the dataset that can
 select count(distinct (customer_id)) as CustomerNumber
 from retail_sales
 ```
-	There are 155 unique customers.
+_Result:_ 155 unique customers.
 
 2. How many categories do we have?
 ```sql
@@ -140,7 +140,7 @@ from retail_sales
 select distinct category as Categories
 from retail_sales
 ```
-	3, Clothing, Electronics and Beauty.
+_Result:_ Clothing, Electronics, Beauty
  
 3. Which category has the most sales?
 ```sql
@@ -196,11 +196,11 @@ order by TotalAmmount desc
 
 ---
 
-## First findings.
+## 📝 First Findings
 
-*We know which clients have the most transactions.*
-*We know which clients bought the most products.*
-*We know which clients spend the most.*
+- We know which clients have the most transactions.
+- We know which clients bought the most products.
+- We know which clients spent the most.
 
 **Even though client_id #5 is not in the top 3 of the most transactions or products bought, it's the 3rd with the most amount of money spent.**
 
@@ -354,6 +354,15 @@ group by shift
 order by TotalSale desc
 ```
 ![Which shift sold the most?](images/Query_13.png)
+
+## 📝 Final Findings
+
+- We know which category has the most transactions; with this information, we can improve or plan new discounts for those categories that need to increase sales.
+- We know when it's the best time for sales. Not only the time of the year, but the specifics of the hour and shift.
+- We also know when it's imperative to have discounts to improve sales.
+- We also know what time of day has the most transactions. So we can improve or increase the number of employees attending each shift.
+
+
 
 
 
